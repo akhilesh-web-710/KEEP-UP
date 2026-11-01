@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090d18">
+  <meta name="description" content="KEEP UP — live cricket and football scores.">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <title>KEEP UP — Sports, live</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="KEEP UP home"><span class="brand-mark">K</span><span>KEEP<span class="brand-accent"> UP</span></span></a>
+      <div class="top-actions">
+        <button class="icon-btn" id="refreshBtn" aria-label="Refresh scores" title="Refresh">↻</button>
+        <button class="icon-btn" id="settingsBtn" aria-label="Settings" title="Settings">⚙</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="welcome">
+        <div><p class="eyebrow">YOUR SPORTS, ONE PLACE</p><h1>Stay in the <span>game.</span></h1>
+        <p class="subhead">Every moment. Every score. KEEP UP.</p></div>
+        <div class="live-orb"><span></span> LIVE HUB</div>
+      </section>
+
+      <nav class="sport-tabs" aria-label="Sports">
+        <button class="sport-tab active" data-sport="all">✦ <span>All sports</span></button>
+        <button class="sport-tab" data-sport="cricket">🏏 <span>Cricket</span></button>
+        <button class="sport-tab" data-sport="football">⚽ <span>Football</span></button>
+      </nav>
+
+      <section class="section-head">
+        <div><p class="eyebrow">MATCH CENTRE</p><h2 id="sectionTitle">The latest action</h2></div>
+        <span class="date-pill" id="todayLabel"></span>
+      </section>
+
+      <div class="filter-row">
+        <button class="filter-chip selected" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="live">🔴 Live</button>
+        <button class="filter-chip" data-filter="upcoming">Upcoming</button>
+        <button class="filter-chip" data-filter="finished">Results</button>
+        <button class="filter-chip" data-filter="favorites">★ Saved</button>
+      </div>
+
+      <div class="status-line" id="statusLine">Showing sample matches · Add API keys in Settings for live data</div>
+      <section id="matches" class="match-list" aria-live="polite"></section>
+
+      <section class="assistant-promo">
+        <div class="assistant-icon">✳</div>
+        <div class="assistant-copy"><p class="eyebrow">MEET YOUR SPORTS ASSISTANT</p><h3>Ask. Explore. Understand.</h3><p>Get quick explanations about teams, rules and match stats.</p></div>
+        <button class="round-arrow" id="openChat" aria-label="Open AI assistant">↗</button>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="bottom-item active" data-page="scores"><span>▦</span>Scores</button>
+      <button class="bottom-item" data-page="chat"><span>✳</span>Assistant</button>
+      <button class="bottom-item" data-page="saved"><span>☆</span>Saved</button>
+    </nav>
+  </div>
+
+  <dialog id="settingsDialog" class="sheet">
+    <form method="dialog" class="sheet-head"><div><p class="eyebrow">PERSONALISE KEEP UP</p><h2>Data settings</h2></div><button class="close-btn" aria-label="Close">×</button></form>
+    <div class="sheet-body">
+      <div class="notice"><b>API keys stay on this device.</b><br>For personal testing only. Never publish keys in public source code. Free API plans have request and competition limits.</div>
+      <label>Cricket Data API key<input id="cricketKey" type="password" placeholder="Paste your cricketdata.org key" autocomplete="off"></label>
+      <p class="help">Cricket API: <a href="https://cricketdata.org/" target="_blank" rel="noreferrer">Create a free account</a>. Current-match endpoint is used.</p>
+      <label>API-Football key<input id="footballKey" type="password" placeholder="Paste your API-Football key" autocomplete="off"></label>
+      <p class="help">Football API: <a href="https://dashboard.api-football.com/register" target="_blank" rel="noreferrer">Create a free account</a>. Free plan competition coverage is limited.</p>
+      <button type="button" class="primary-btn full" id="saveKeys">Save keys on this phone</button>
+      <button type="button" class="secondary-btn full" id="clearKeys">Remove saved keys</button>
+      <p class="help">This first version calls providers directly from your phone. Some providers may block browser requests (CORS); if that happens, a small backend proxy will be needed.</p>
+    </div>
+  </dialog>
+
+  <dialog id="chatDialog" class="chat-sheet">
+    <div class="chat-head"><div><p class="eyebrow">KEEP UP INTELLIGENCE</p><h2>Sports assistant <span class="online-dot"></span></h2></div><button class="close-btn" id="closeChat">×</button></div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="bubble assistant">Hey! I'm your KEEP UP assistant. Ask me about cricket, football, rules, teams or the matches on this screen. <small>Demo assistant · no paid AI service connected</small></div>
+    </div>
+    <div class="quick-prompts"><button>Explain offside</button><button>What is DLS?</button><button>Explain a hat-trick</button></div>
+    <form id="chatForm" class="chat-input"><input id="chatInput" placeholder="Ask a sports question…" autocomplete="off"><button class="send-btn" aria-label="Send message">➤</button></form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="./app.js"></script>
+</body>
+</html>

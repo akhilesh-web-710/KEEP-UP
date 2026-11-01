@@ -1,0 +1,11 @@
+{
+  "name": "KEEP UP — Live Sports",
+  "short_name": "KEEP UP",
+  "description": "Live cricket and football scores with a sports assistant.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090d18",
+  "theme_color": "#090d18",
+  "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
